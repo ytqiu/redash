@@ -142,10 +142,10 @@ ACCESS_CONTROL_ALLOW_HEADERS = os.environ.get("REDASH_CORS_ACCESS_CONTROL_ALLOW_
 
 # Query Runners
 default_query_runners = [
-    'redash.query_runner.athena',
-    'redash.query_runner.big_query',
-    'redash.query_runner.google_spreadsheets',
-    'redash.query_runner.graphite',
+    #'redash.query_runner.athena',
+    #'redash.query_runner.big_query',
+    #'redash.query_runner.google_spreadsheets',
+    #'redash.query_runner.graphite',
     'redash.query_runner.mongodb',
     'redash.query_runner.mysql',
     'redash.query_runner.pg',
@@ -155,22 +155,22 @@ default_query_runners = [
     'redash.query_runner.presto',
     'redash.query_runner.hive_ds',
     'redash.query_runner.impala_ds',
-    'redash.query_runner.vertica',
-    'redash.query_runner.clickhouse',
-    'redash.query_runner.yandex_metrika',
-    'redash.query_runner.treasuredata',
+    #'redash.query_runner.vertica',
+    #'redash.query_runner.clickhouse',
+    #'redash.query_runner.yandex_metrika',
+    #'redash.query_runner.treasuredata',
     'redash.query_runner.sqlite',
-    'redash.query_runner.dynamodb_sql',
-    'redash.query_runner.mssql',
-    'redash.query_runner.memsql_ds',
+    #'redash.query_runner.dynamodb_sql',
+    #'redash.query_runner.mssql',
+    #'redash.query_runner.memsql_ds',
     'redash.query_runner.mapd',
-    'redash.query_runner.jql',
-    'redash.query_runner.google_analytics',
-    'redash.query_runner.axibase_tsd',
-    'redash.query_runner.salesforce',
-    'redash.query_runner.query_results',
+    #'redash.query_runner.jql',
+    #'redash.query_runner.google_analytics',
+    #'redash.query_runner.axibase_tsd',
+    #'redash.query_runner.salesforce',
+    #'redash.query_runner.query_results',
     'redash.query_runner.prometheus',
-    'redash.query_runner.qubole'
+    #'redash.query_runner.qubole'
 ]
 
 enabled_query_runners = array_from_string(os.environ.get("REDASH_ENABLED_QUERY_RUNNERS", ",".join(default_query_runners)))

@@ -3,7 +3,8 @@
 version: '2'
 services:
   server:
-    build: .
+    #build: .
+    image: ytqiu/redash
     command: dev_server
     depends_on:
       - postgres
@@ -18,7 +19,8 @@ services:
       REDASH_REDIS_URL: "redis://redis:6379/0"
       REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
   worker:
-    build: .
+    #build: .
+    image: ytqiu/redash
     command: scheduler
     volumes_from:
       - server
@@ -41,3 +43,12 @@ services:
     # tests.
     command: "postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=OFF"
     restart: unless-stopped
+  nginx:
+    image: redash/nginx:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    links:
+      - server:redash
+    restart: always

@@ -86,12 +86,14 @@ class Impala(BaseSQLQueryRunner):
 
         for schema_name in map(lambda a: unicode(a['name']), self._run_query_internal(schemas_query)):
             for table_name in map(lambda a: unicode(a['name']), self._run_query_internal(tables_query % schema_name)):
-                columns = map(lambda a: unicode(a['Column']), self._run_query_internal(columns_query % (schema_name, table_name)))
+                try:
+                    columns = map(lambda a: unicode(a['Column']), self._run_query_internal(columns_query % (schema_name, table_name)))
+                    if schema_name != 'default':
+                        table_name = '{}.{}'.format(schema_name, table_name)
 
-                if schema_name != 'default':
-                    table_name = '{}.{}'.format(schema_name, table_name)
-
-                schema_dict[table_name] = {'name': table_name, 'columns': columns}
+                    schema_dict[table_name] = {'name': table_name, 'columns': columns}
+                except Exception:
+                    print '{} can not get clumn stats'.format(table_name)
 
         return schema_dict.values()
 
